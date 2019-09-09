@@ -20,6 +20,8 @@ class App extends Component {
 
   }
   render() {
+    console.log('store - getState : ', store.getState());
+    store.subscribe(() => console.log(store.getState()));
     console.log('props: ', this, this.props);
     return (
       <Provider store={store}>

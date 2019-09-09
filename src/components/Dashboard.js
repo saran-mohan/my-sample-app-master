@@ -1,19 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 // import * as action from './../store/actions/actions';
 
 const Dashboard = (props) => {
+    const state = useSelector(state => state);
+    console.log('use selector - state', state);
 
-    console.log('dashboard - props ', props, props.userDetails);
+    console.log('dashboard - props ', props);
     let userList = null;
-    if (props.userDetails.length > 0) {
-        userList = (
-            <ul>
-                {props.userDetails.map(user => {
-                    return <li key={user.id}>{user.employee_name} - {user.employee_salary}</li>
-                })}
-            </ul>
-        )
+    // if (state.users.userDetails.length > 0) {
+    //     userList = (
+    //         <ul>
+    //             {state.users.userDetails.map(user => {
+    //                 return <li key={user.id}>{user.employee_name} - {user.employee_salary}</li>
+    //             })}
+    //         </ul>
+    //     )
+    // }
+    
+    if (state.users.userDetails.length > 0) {
+        userList = state.users.userDetails.map(user => (
+            <tr key={user.id}>
+                <td>{user.employee_name}</td>
+                <td>{user.employee_salary}</td>
+            </tr>
+        ));
     }
 
     return (
@@ -21,9 +32,21 @@ const Dashboard = (props) => {
 
             <h3>Dashboard Page</h3>
 
-            <p>{props.email} - {props.password}</p>
+            <p>{state.login.email} - {state.login.password}</p>
 
-            {userList}
+            {/* {userList} */}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {userList}
+                </tbody>
+            </table>
 
 
         </div>

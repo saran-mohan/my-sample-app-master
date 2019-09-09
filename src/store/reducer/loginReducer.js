@@ -1,12 +1,12 @@
-import * as storeAction from './../actions/actions';
+import * as storeAction from '../actions/actions';
 
 const initialState = {
     email: '',
     password: '',
-    userDetails: []
+    // userDetails: []
 };
 
-export const reducer = (state = initialState, action) => {
+export const loginReducer = (state = initialState, action) => {
     console.log('reducer fn: ', action);
     switch (action.type) {
 
@@ -24,12 +24,12 @@ export const reducer = (state = initialState, action) => {
                 ...state
             };
 
-        case storeAction.UPDATE_USER_DETAILS:
-            console.log('reducer fn - case UPDATE_USER_DETAILS', action, state);
-            return {
-                ...state,
-                userDetails: action.payload.userDetails
-            };
+        // case storeAction.UPDATE_USER_DETAILS:
+        //     console.log('reducer fn - case UPDATE_USER_DETAILS', action, state);
+        //     return {
+        //         ...state,
+        //         userDetails: action.payload.userDetails
+        //     };
 
         // case storeAction.SET_EMAIL:
         //     console.log('reducer fn - case SET EMAIL', action, state);
